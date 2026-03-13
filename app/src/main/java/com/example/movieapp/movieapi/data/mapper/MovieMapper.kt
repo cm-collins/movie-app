@@ -1,7 +1,7 @@
 package com.example.movieapp.movieapi.data.mapper
 
 import com.example.movieapp.movieapi.data.remote.MovieDto
-import com.example.movieapp.movieapi.domain.Movie
+import com.example.movieapp.movieapi.domain.model.Movie
 import com.example.movieapp.movieapi.network.NetworkConstants.IMAGE_BASE
 
 fun MovieDto.toDomain() : Movie {

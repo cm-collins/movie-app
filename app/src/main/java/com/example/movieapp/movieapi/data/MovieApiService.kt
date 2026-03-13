@@ -11,7 +11,7 @@ class MovieApiService (val httpClient: HttpClient) {
 
     suspend fun getPopularMovies(): List<MovieDto> {
         val response: MovieResponseDto =
-            httpClient.get("${NetworkConstants.BASE_URL}/movie/popular")
+            httpClient.get("${NetworkConstants.BASE_URL}movie/popular")
             {
                 parameter("api_key", NetworkConstants.API_KEY)
             }.body()
