@@ -5,16 +5,9 @@
  * updating views, we describe the UI based on the current state.
  * 
  * Key Concepts:
- * 1. Scaffold: Provides a high-level API for basic Material Design layouts 
- *    (TopBar, BottomBar, Snackbar, etc.).
- * 2. State Hoisting: The 'moviesUiState' is collected from the ViewModel, 
- *    keeping the composables "stateless" and easier to test.
- * 3. LazyVerticalGrid: Efficiently displays a large list of items in a grid format, 
- *    recycling views to save memory.
- * 4. AsyncImage (Coil): Downloads and displays images from a URL asynchronously, 
- *    handling placeholders and error states automatically.
- * 5. Cinematic Theming: Uses a combination of gradients, custom colors, 
- *    and spacing to provide a premium user experience.
+ * 1. Scaffold: Provides a high-level API for basic Material Design layouts.
+ * 2. Window Insets: Automatically handles status bars, navigation bars, and cutouts (notches).
+ * 3. LazyVerticalGrid: Efficiently displays items in a grid format.
  */
 package com.example.movieapp.movieapi.ui
 
@@ -61,10 +54,14 @@ fun MovieScreen(
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background
-                )
+                ),
+                // This ensures the top bar respects system windows (status bar/notches)
+                windowInsets = WindowInsets.statusBars
             )
         },
-        containerColor = MaterialTheme.colorScheme.background
+        containerColor = MaterialTheme.colorScheme.background,
+        // This ensures the content doesn't get hidden behind the bottom navigation
+        contentWindowInsets = WindowInsets.safeDrawing
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -104,7 +101,7 @@ fun MovieScreen(
                     ) {
                         Text(text = "Failed to load movies", color = MaterialTheme.colorScheme.onBackground)
                         Spacer(modifier = Modifier.height(8.dp))
-                        Button(onClick = { /* ViewModel could have a retry method */ }) {
+                        Button(onClick = { /* Retry logic */ }) {
                             Text("Retry")
                         }
                     }
@@ -132,7 +129,6 @@ fun MovieCard(imageUrl: String?, title: String, overview: String) {
                 contentScale = ContentScale.Crop
             )
 
-            // Cinematic Gradient Overlay
             Box(
                 modifier = Modifier
                     .fillMaxSize()
