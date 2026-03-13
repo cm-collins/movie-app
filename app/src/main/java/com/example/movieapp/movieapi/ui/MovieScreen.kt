@@ -1,3 +1,21 @@
+/**
+ * UI LAYER: MovieScreen
+ * 
+ * Concept: Jetpack Compose is a declarative UI toolkit. Instead of manually 
+ * updating views, we describe the UI based on the current state.
+ * 
+ * Key Concepts:
+ * 1. Scaffold: Provides a high-level API for basic Material Design layouts 
+ *    (TopBar, BottomBar, Snackbar, etc.).
+ * 2. State Hoisting: The 'moviesUiState' is collected from the ViewModel, 
+ *    keeping the composables "stateless" and easier to test.
+ * 3. LazyVerticalGrid: Efficiently displays a large list of items in a grid format, 
+ *    recycling views to save memory.
+ * 4. AsyncImage (Coil): Downloads and displays images from a URL asynchronously, 
+ *    handling placeholders and error states automatically.
+ * 5. Cinematic Theming: Uses a combination of gradients, custom colors, 
+ *    and spacing to provide a premium user experience.
+ */
 package com.example.movieapp.movieapi.ui
 
 import androidx.compose.foundation.background
